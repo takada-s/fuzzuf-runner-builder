@@ -12,8 +12,7 @@ RUN apt-get update \
 WORKDIR /work
 RUN git clone https://github.com/fuzzuf/fuzzuf.git \
   && cd fuzzuf  \
-  && sed -i.bak 's/-march=native/-march=haswell/g' CMakeLists.txt \
-  && cmake -B build -DCMAKE_BUILD_TYPE=Release \
+  && cmake -B build -DCMAKE_BUILD_TYPE=Release -DRELEASE_MARCH=haswell \
   && cmake --build build -j$(nproc)
 
 CMD ["/bin/bash"]
